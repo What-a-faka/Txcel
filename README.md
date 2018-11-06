@@ -117,36 +117,13 @@ import Txcel from 'txcel'
 Vue.component(Txcel.name, Txcel)
 ```
 
-The default target of import is the source-code(un-handle with webpack and babel).It can work, but it will cause akout 150kb's bundle size increase。This is beacuse it import the [whole element-ui library](http://element-cn.eleme.io/#/zh-CN/component/quickstart). The following will solve it: <br/>
+The default target of import is the source-code(un-handle with webpack and babel).
 
-vue-cli3 example, babel.config.js
+If you alread use element-ui and jsx in your project, you can use it directly.
 
-```javascript
-module.exports = {
-  presets: [
-    [
-      '@vue/app',
-      {
-        "modules": false,
-      },
-    ],
-  ],
-  plugins: [
-    [
-      "component",
-      {
-        "libraryName": "element-ui",
-        "styleLibraryName": "theme-chalk"
-      }
-    ]
-  ]
-}
+If you don't use jsx. U should add[transform-vue-jsx](https://github.com/vuejs/babel-plugin-transform-vue-jsx) babel plugin.
 
-```
-If you do this, the component is about 50Kb。
-If you have alread import element-ui, the component is just about **1kb**。
-
-You can also use the packaged file in 'txcel/dist/txcel.common.js' without any babel config.
+If you don't use element-ui in your project, you can use the packaged version in 'txcel/dist/txcel.common'.
 
 ## Handle complex table cell
 
