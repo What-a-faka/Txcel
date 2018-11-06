@@ -2,7 +2,7 @@ Super flexible Vue table component base on configuration.
 
 ## Example
 
-```
+```html
 <template>
   <Txcel
     :data="tableData"
@@ -121,9 +121,9 @@ The default target of import is the source-code(un-handle with webpack and babel
 
 If you alread use element-ui and jsx in your project, you can use it directly.
 
-If you don't use jsx. U should add[transform-vue-jsx](https://github.com/vuejs/babel-plugin-transform-vue-jsx) babel plugin.
+If you don't use jsx. U should add [transform-vue-jsx](https://github.com/vuejs/babel-plugin-transform-vue-jsx) babel plugin.
 
-If you don't use element-ui in your project, you can use the packaged version in 'txcel/dist/txcel.common'.
+If you don't use element-ui in your project, you can use the packaged version in 'txcel/dist/txcel.common.js'.
 
 ## Handle complex table cell
 
