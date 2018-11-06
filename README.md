@@ -2,7 +2,7 @@ Super flexible Vue table component base on configuration.
 
 ## Example
 
-```javascript
+```
 <template>
   <Txcel
     :data="tableData"
@@ -109,6 +109,7 @@ export default function tableCols(vm) {
 ```
 npm i txcel -S
 ```
+
 then
 ```javascript
 import Txcel from 'txcel'
@@ -148,9 +149,11 @@ If you have alread import element-ui, the component is just about **1kb**。
 You can also use the packaged file in 'txcel/dist/txcel.common.js' without any babel config.
 
 ## Handle complex table cell
+
 We use jsx to handle complex table cell. If your project is created by vue-cli, you don't need do anything, just use jsx. If not, you should add [transform-vue-jsx](https://github.com/vuejs/babel-plugin-transform-vue-jsx) which is a babel plugin in your project。
 
 ## Handle cell event
+
 It's very usual that there are some button in cell or you want call some methods when click a cell.
 There are 2 ways to do it.
 
@@ -187,11 +190,13 @@ There are 2 ways to do it.
   ```
 
 2.use emitCell. Just like the delete button in example code
+
 ## API
 
 The basic table component use the table component of [element-ui](https://github.com/ElemeFE/element), so you can add all props of [el-table-column](http://element-cn.eleme.io/#/zh-CN/component/table) in columns configuration(just like in tableConfig.js above)
 
 ### props
+
 | prop-name | description | type | options | default |
 |:--:|:--:|:--:|:--:|:--:|
 | data | the data to show in the table | Array |
@@ -201,11 +206,13 @@ The basic table component use the table component of [element-ui](https://github
 | options | raw props of el-table | Object | | |
 
 ### events
+
 | event name | description | params |
 |:--:|:--:|:--:|
 | change | trigger when page-change or sort-change | { pagination, sortInfo } |
 | cellChange | trigger when explicit call emitCell in tablleConfig | type, data |
-#### <a name="pager">default pager</a>
+
+#### <a name="pager">Default pager</a>
 
 ```javascript
 {
