@@ -1,4 +1,6 @@
-Super flexible Vue table component base on configuration.
+:bulb: Super flexible Vue table component base on configuration.
+
+Strongly recommend used by the project which alread use element-ui and jsx :dog: .
 
 ## Example
 
@@ -103,6 +105,10 @@ export default function tableCols(vm) {
 }
 
 ```
+
+result:
+![example](https://raw.githubusercontent.com/MoruoFrog/Txcel/master/static/example.png)
+
 
 ## Usage
 
