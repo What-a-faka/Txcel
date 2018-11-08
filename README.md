@@ -107,7 +107,7 @@ export default function tableCols(vm) {
 ```
 
 result:
-![example](https://raw.githubusercontent.com/MoruoFrog/Txcel/master/static/example.png)
+![example](https://raw.githubusercontent.com/What-a-faka/Txcel/master/static/example.png)
 
 
 ## Usage
