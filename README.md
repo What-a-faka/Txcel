@@ -112,11 +112,14 @@ result:
 
 ## Usage
 
-```
+```sh
 npm i txcel -S
+# OR
+yarn add txcel
 ```
 
-then
+After install, register component
+
 ```javascript
 import Txcel from 'txcel'
 
@@ -129,7 +132,14 @@ If you alread use element-ui and jsx in your project, you can use it directly.
 
 If you don't use jsx. U should add [transform-vue-jsx](https://github.com/vuejs/babel-plugin-transform-vue-jsx) babel plugin.
 
-If you don't use element-ui in your project, you can use the packaged version in 'txcel/dist/txcel.common.js'.
+**Note: Vue Cli 3 auto add this dev dependency**.
+
+If you don't use element-ui in your project, you can use the packaged version:
+```javascript
+import Txcel from 'txcel/dist/txcel.common.js'
+
+Vue.component(Txcel.name, Txcel)
+```
 
 ## Handle complex table cell
 
