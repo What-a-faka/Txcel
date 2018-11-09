@@ -15,41 +15,24 @@
         align="center">
       </el-table-column>
 
-      <template v-for="col in columns">
-        <el-table-column
-          v-if="col.component"
-          :key="col.prop"
-          :label="col.label"
-          :prop="col.prop"
-          :sortable="col.sortable"
-          :formatter="col.formatter"
-          :resizable="false"
-          :width="col.width"
-          :header-align="col.headerAlign || 'center'"
-          :align="col.align || 'center'"
-          :min-width="col.minWidth"
-        >
-          <template slot-scope="scope">
-            <component :is="col.component" :row="scope.row"></component>
-          </template>
-        </el-table-column>
-
-        <slot v-else-if="col.slot" :name="col.slot"></slot>
-
-        <el-table-column
-          v-else
-          :key="col.prop"
-          :label="col.label"
-          :prop="col.prop"
-          :sortable="col.sortable"
-          :formatter="col.formatter"
-          :resizable="false"
-          :width="col.width"
-          :min-width="col.minWidth"
-          :header-align="col.headerAlign || 'center'"
-          :align="col.align || 'center'">
-        </el-table-column>
-      </template>
+      <el-table-column
+        v-for="col in columns"
+        :key="col.prop"
+        :label="col.label"
+        :prop="col.prop"
+        :sortable="col.sortable"
+        :resizable="false"
+        :width="col.width"
+        :header-align="col.headerAlign || 'center'"
+        :align="col.align || 'center'"
+        :min-width="col.minWidth"
+      >
+        <template slot-scope="scope">
+          <component v-if="col.component" :is="col.component" :row="scope.row"></component>
+          <slot v-else-if="col.slot" :name="col.slot" :row="scope.row"></slot>
+          <span v-else>{{displayCellData(scope, col)}}</span>
+        </template>
+      </el-table-column>
     </el-table>
 
     <el-pagination
@@ -141,6 +124,12 @@ export default {
 
     emitCell(prop, data = {}) {
       this.$emit('cellChange', prop, data)
+    },
+
+    displayCellData(scope, col) {
+      const value = scope.row[col.raw.prop]
+      if (!col.formatter) return value
+      return col.formatter(value, scope.row)
     },
   },
 }
