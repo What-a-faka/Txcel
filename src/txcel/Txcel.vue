@@ -69,6 +69,7 @@
 import {
 	Table,
 	Pagination,
+  TableColumn,
 } from 'element-ui'
 
 export default {
@@ -78,6 +79,7 @@ export default {
   components: {
     [Table.name]: Table,
     [Pagination.name]: Pagination,
+    [TableColumn.name]: TableColumn,
   },
 
   provide() {

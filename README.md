@@ -123,7 +123,7 @@ After install, register component
 ```javascript
 import Txcel from 'txcel'
 
-Vue.component(Txcel.name, Txcel)
+Vue.use(Txcel)
 ```
 
 The default target of import is the source-code(un-handle with webpack and babel).
@@ -137,8 +137,9 @@ If you don't use jsx. U should add [transform-vue-jsx](https://github.com/vuejs/
 If you don't use element-ui in your project, you can use the packaged version:
 ```javascript
 import Txcel from 'txcel/dist/txcel.common.js'
+import 'txcel/dist/txcel/css'
 
-Vue.component(Txcel.name, Txcel)
+Vue.use(Txcel)
 ```
 
 ## Handle complex table cell
