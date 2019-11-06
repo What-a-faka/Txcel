@@ -156,6 +156,7 @@ export default {
       // render的写法，更简洁
       if (render && typeof render === 'function') {
         return {
+          inject: ['emitCell'], // 可以使用emitCell抛出事件
           render: h => render(h, scope),
         }
       }
