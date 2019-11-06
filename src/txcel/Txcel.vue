@@ -30,7 +30,7 @@
           :min-width="col.minWidth"
         >
           <template slot-scope="scope">
-            <component :is="col.component" :row="scope.row"></component>
+            <component :is="genColComponent(col, scope)" :row="scope.row"></component>
           </template>
         </el-table-column>
 
@@ -143,6 +143,22 @@ export default {
 
     emitCell(prop, data = {}) {
       this.$emit('cellChange', prop, data)
+    },
+
+    genColComponent(col, scope) {
+      const render = col.render
+      const component = col.component
+      // 兼容老的component写法
+      if (component && Object.prototype.toString(component) === '[object Object]') {
+        return component
+      }
+
+      // render的写法，更简洁
+      if (render && typeof render === 'function') {
+        return {
+          render: h => render(h, scope),
+        }
+      }
     },
   },
 }
