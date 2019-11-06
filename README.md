@@ -75,31 +75,20 @@ export default function tableCols(vm) {
     {
       label: '标签',
       prop: 'tag',
-      component: {
-        props: { row: Object },
-        render() {
-          return (
-            <div>
-              { this.row.tag.map(tag => <el-tag size="mini">{ tag }</el-tag>) }
-            </div>
-          )
-        },
-      },
+      render: (h, p) => (
+        <div>
+          { p.row.tag.map(tag => <el-tag size="mini">{ tag }</el-tag>) }
+        </div>
+      ),
     },
     {
       label: '操作',
-      component: {
-        inject: ['emitCell'],
-        props: { row: Object },
-        render() {
-          return (
-            <div>
-              <el-button type="text" onClick={ vm.handleEdit }>Edit</el-button>
-              <el-button type="text" onClick={ this.emitCell('delete', this.row.id) }>Delete</el-button>
-            </div>
-          )
-        },
-      },
+      render: (h, p) => (
+        <div>
+          <el-button type="text" onClick={ vm.handleEdit }>Edit</el-button>
+          <el-button type="text" onClick={ this.emitCell('delete', p.row.id) }>Delete</el-button> // provide by Txcel component，auto injected
+        </div>
+      ),
     },
   ]
 }
@@ -145,6 +134,35 @@ Vue.use(Txcel)
 ## Handle complex table cell
 
 We use jsx to handle complex table cell. If your project is created by vue-cli, you don't need do anything, just use jsx. If not, you should add [transform-vue-jsx](https://github.com/vuejs/babel-plugin-transform-vue-jsx) which is a babel plugin in your project。
+There are 2 ways to do this, one of it is use render function
+
+```javascript
+  {
+    label: '操作',
+    render: (h, p) => (
+      <div>
+        { p.row.tag.map(tag => <el-tag size="mini">{ tag }</el-tag>) }
+      </div>
+    ),
+  },
+```
+
+another way is construct a Vue defination Object
+
+```javascript
+  component: {
+    props: { row: Object },
+    render() {
+      return (
+        <div>
+          { this.row.tag.map(tag => <el-tag size="mini">{ tag }</el-tag>) }
+        </div>
+      )
+    },
+  },
+```
+
+Obviously, the first one is recommended.
 
 ## Handle cell event
 
@@ -168,22 +186,18 @@ There are 2 ways to do it.
     return [
       {
         label: '操作',
-        component: {
-          props: { row: Object },
-          render() {
-            return (
-              <div>
-                <el-button type="text" onClick={ vm.handleEdit }>Edit</el-button>
-              </div>
-            )
-          },
-        }
+        render: (h, p) => (
+          <div>
+            <el-button type="text" onClick={ vm.handleEdit }>Edit</el-button>
+            <el-button type="text" onClick={ this.emitCell('delete', p.row.id) }>Delete</el-button>
+          </div>
+        ),
       }
     ]
   }
   ```
 
-2.use emitCell. Just like the delete button in example code
+2.use emitCell. Just like the delete button in example code above，the emitCell method is provide by the upper Txcel component and auto injected.
 
 ## API
 
