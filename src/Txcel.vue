@@ -9,7 +9,11 @@
       @sort-change="handleSortChange"
       @selection-change="handleRowSelect"
     >
-      <el-table-column v-if="rowSelection" type="selection" align="center"></el-table-column>
+      <el-table-column
+        v-if="rowSelection"
+        type="selection"
+        align="center"
+      ></el-table-column>
 
       <template v-for="col in columns">
         <el-table-column
@@ -26,7 +30,11 @@
           :min-width="col.minWidth"
         >
           <template slot-scope="scope">
-            <component :is="genColComponent(col, scope)" :row="scope.row" :column="col"></component>
+            <component
+              :is="genColComponent(col, scope)"
+              :row="scope.row"
+              :column="col"
+            ></component>
           </template>
         </el-table-column>
 
@@ -44,8 +52,7 @@
           :min-width="col.minWidth"
           :header-align="col.headerAlign || 'center'"
           :align="col.align || 'center'"
-        >
-        </el-table-column>
+        ></el-table-column>
       </template>
     </el-table>
 
@@ -58,8 +65,7 @@
       :page-size="pager.page_size"
       :total="pager.total"
       @current-change="handlePageChange"
-    >
-    </el-pagination>
+    ></el-pagination>
   </div>
 </template>
 
@@ -143,7 +149,10 @@ export default {
       const render = col.render
       const component = col.component
       // 兼容老的component写法
-      if (component && Object.prototype.toString(component) === '[object Object]') {
+      if (
+        component &&
+        Object.prototype.toString(component) === '[object Object]'
+      ) {
         return component
       }
 
@@ -151,7 +160,7 @@ export default {
       if (render && typeof render === 'function') {
         return {
           inject: ['emitCell'], // 可以使用emitCell抛出事件
-          render: h => render(h, scope),
+          render: (h) => render(h, scope),
         }
       }
     },
