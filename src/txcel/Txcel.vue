@@ -7,13 +7,9 @@
       class="el_table_ow"
       border
       @sort-change="handleSortChange"
-      @selection-change="handleRowSelect">
-
-      <el-table-column
-        v-if="rowSelection"
-        type="selection"
-        align="center">
-      </el-table-column>
+      @selection-change="handleRowSelect"
+    >
+      <el-table-column v-if="rowSelection" type="selection" align="center"></el-table-column>
 
       <template v-for="col in columns">
         <el-table-column
@@ -30,7 +26,7 @@
           :min-width="col.minWidth"
         >
           <template slot-scope="scope">
-            <component :is="genColComponent(col, scope)" :row="scope.row"></component>
+            <component :is="genColComponent(col, scope)" :row="scope.row" :column="col"></component>
           </template>
         </el-table-column>
 
@@ -47,7 +43,8 @@
           :width="col.width"
           :min-width="col.minWidth"
           :header-align="col.headerAlign || 'center'"
-          :align="col.align || 'center'">
+          :align="col.align || 'center'"
+        >
         </el-table-column>
       </template>
     </el-table>
@@ -60,21 +57,18 @@
       :current-page="pager.page"
       :page-size="pager.page_size"
       :total="pager.total"
-      @current-change="handlePageChange">
+      @current-change="handlePageChange"
+    >
     </el-pagination>
   </div>
 </template>
 
 <script>
-import {
-	Table,
-	Pagination,
-  TableColumn,
-} from 'element-ui'
+import { Table, Pagination, TableColumn } from 'element-ui'
 
 export default {
   name: 'Txcel',
-  
+
   /* eslint-disable */
   components: {
     [Table.name]: Table,
@@ -91,7 +85,7 @@ export default {
   props: {
     data: {
       type: Array,
-      default: () => ([]),
+      default: () => [],
     },
     columns: {
       type: [Array, Boolean],
@@ -125,7 +119,7 @@ export default {
       this.$emit(
         'change',
         { ...this.pager, page: nextPage }, // pagination
-        null, // ordering
+        null // ordering
       )
     },
 
@@ -133,7 +127,7 @@ export default {
       this.$emit(
         'change',
         null, // pagination
-        sortInfo, // ordering
+        sortInfo // ordering
       )
     },
 
