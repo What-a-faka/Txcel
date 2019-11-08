@@ -9,7 +9,8 @@
   "keywords": [
     "vue",
     "table",
-    "configurable"
+    "configurable",
+    "element-ui"
   ],
   "files": [
     "dist",
