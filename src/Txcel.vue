@@ -61,8 +61,8 @@
       class="f_tar f_mt24"
       background
       :layout="pager.layout"
-      :current-page="pager.page"
-      :page-size="pager.page_size"
+      :current-page="pagination.page"
+      :page-size="pagination.page_size"
       :total="pager.total"
       @current-change="handlePageChange"
     ></el-pagination>
@@ -116,6 +116,15 @@ export default {
     },
   },
 
+  computed: {
+    pagination() {
+      return {
+        page: this.pager.page,
+        page_size: this.pager.page_size
+      }
+    },
+  },
+
   methods: {
     getTable() {
       return this.$refs.tableOrigin
@@ -124,7 +133,7 @@ export default {
     handlePageChange(nextPage) {
       this.$emit(
         'change',
-        { ...this.pager, page: nextPage }, // pagination
+        { ...this.pagination, page: nextPage }, // pagination
         null // ordering
       )
     },
