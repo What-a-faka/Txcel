@@ -124,7 +124,7 @@ export default {
     handlePageChange(nextPage) {
       this.$emit(
         'change',
-        { ...this.pager, page: nextPage }, // pagination
+        { page: nextPage, page_size: this.page_size }, // pagination
         null // ordering
       )
     },
