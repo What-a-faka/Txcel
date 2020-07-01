@@ -1,6 +1,6 @@
 {
   "name": "@what-a-faka/txcel",
-  "version": "1.2.3",
+  "version": "1.2.5",
   "main": "dist/txcel.common.js",
   "module": "src/index.js",
   "description": "flexible vue table component with totally configuration, based on element-ui(el-table).",
@@ -28,10 +28,9 @@
     "@vue/cli-service": "^3.0.4",
     "babel-eslint": "^10.0.1",
     "babel-plugin-component": "^1.1.1",
-    "element-ui": "^2.13.0",
+    "element-ui": "^2.13.2",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0-0",
-    "vue": "^2.6.11",
     "vue-template-compiler": "^2.5.17"
   },
   "peerDependencies": {
