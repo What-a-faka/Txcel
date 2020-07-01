@@ -1,16 +1,16 @@
 <template>
-  <div class="txcel_wrap">
+  <div class="txcel">
     <el-table
       ref="tableOrigin"
+      border
       v-bind="options"
       :data="data"
-      class="el_table_ow"
-      border
       @sort-change="handleSortChange"
       @selection-change="handleRowSelect"
     >
       <el-table-column
         v-if="rowSelection"
+        v-bind="rowSelection.options"
         type="selection"
         align="center"
       ></el-table-column>
@@ -58,8 +58,8 @@
 
     <el-pagination
       v-if="pager"
-      class="f_tar f_mt24"
       background
+      class="txcel_pager"
       :layout="pager.layout"
       :current-page="pagination.page"
       :page-size="pagination.page_size"
@@ -120,7 +120,7 @@ export default {
     pagination() {
       return {
         page: this.pager.page,
-        page_size: this.pager.page_size
+        page_size: this.pager.page_size,
       }
     },
   },
@@ -176,3 +176,10 @@ export default {
   },
 }
 </script>
+
+<style>
+.txcel_pager {
+  margin-top: 24px;
+  text-align: right;
+}
+</style>
