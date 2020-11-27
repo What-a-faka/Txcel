@@ -58,13 +58,15 @@
 
     <el-pagination
       v-if="pager"
+      v-bind="pageOptions"
       background
       class="txcel_pager"
       :layout="pager.layout"
       :current-page="pagination.page"
       :page-size="pagination.page_size"
       :total="pager.total"
-      @current-change="handlePageChange"
+      @current-change="(val) => handlePagerChange('page', val)"
+      @size-change="(val) => handlePagerChange('size', val)"
     ></el-pagination>
   </div>
 </template>
@@ -114,6 +116,10 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    pageOptions: {
+      type: Object,
+      default: () => ({}),
+    },
   },
 
   computed: {
@@ -130,10 +136,20 @@ export default {
       return this.$refs.tableOrigin
     },
 
-    handlePageChange(nextPage) {
+    handlePagerChange(type, nextVal) {
+      const newPager = { ...this.pagination }
+
+      if (type === 'page') {
+        newPager.page = nextVal
+      }
+
+      if (type === 'size') {
+        newPager.page_size = nextVal
+      }
+
       this.$emit(
         'change',
-        { ...this.pagination, page: nextPage }, // pagination
+        newPager, // pagination
         null // ordering
       )
     },
