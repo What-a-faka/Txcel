@@ -18,7 +18,7 @@
   ],
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --mode production",
     "lint": "vue-cli-service lint",
     "publish": "vue-cli-service build --target lib --name txcel src/index.js"
   },
