@@ -1,16 +1,16 @@
 <template>
-  <div class="txcel_wrap">
+  <div class="txcel">
     <el-table
       ref="tableOrigin"
+      border
       v-bind="options"
       :data="data"
-      class="el_table_ow"
-      border
       @sort-change="handleSortChange"
       @selection-change="handleRowSelect"
     >
       <el-table-column
         v-if="rowSelection"
+        v-bind="rowSelection.options"
         type="selection"
         align="center"
       ></el-table-column>
@@ -58,13 +58,15 @@
 
     <el-pagination
       v-if="pager"
-      class="f_tar f_mt24"
+      v-bind="pageOptions"
       background
+      class="txcel_pager"
       :layout="pager.layout"
       :current-page="pagination.page"
       :page-size="pagination.page_size"
       :total="pager.total"
-      @current-change="handlePageChange"
+      @current-change="(val) => handlePagerChange('page', val)"
+      @size-change="(val) => handlePagerChange('size', val)"
     ></el-pagination>
   </div>
 </template>
@@ -114,13 +116,17 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    pageOptions: {
+      type: Object,
+      default: () => ({}),
+    },
   },
 
   computed: {
     pagination() {
       return {
         page: this.pager.page,
-        page_size: this.pager.page_size
+        page_size: this.pager.page_size,
       }
     },
   },
@@ -130,10 +136,22 @@ export default {
       return this.$refs.tableOrigin
     },
 
-    handlePageChange(nextPage) {
+    handlePagerChange(type, nextVal) {
+      const newPager = { ...this.pagination }
+
+      if (type === 'page') {
+        newPager.page = nextVal
+      }
+
+      if (type === 'size') {
+        newPager.page_size = nextVal
+        const curMaxPage = Math.ceil(this.pager.total / newPager.page_size)
+        newPager.page = curMaxPage >= newPager.page ? newPager.page : curMaxPage
+      }
+
       this.$emit(
         'change',
-        { ...this.pagination, page: nextPage }, // pagination
+        newPager, // pagination
         null // ordering
       )
     },
@@ -176,3 +194,10 @@ export default {
   },
 }
 </script>
+
+<style>
+.txcel_pager {
+  margin-top: 24px;
+  text-align: right;
+}
+</style>
