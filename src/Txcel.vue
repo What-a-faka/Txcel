@@ -145,6 +145,8 @@ export default {
 
       if (type === 'size') {
         newPager.page_size = nextVal
+        const curMaxPage = Math.ceil(this.pager.total / newPager.page_size)
+        newPager.page = curMaxPage >= newPager.page ? newPager.page : curMaxPage
       }
 
       this.$emit(
