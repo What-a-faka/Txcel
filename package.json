@@ -1,0 +1,40 @@
+{
+  "name": "@what-a-faka/txcel",
+  "version": "1.2.10",
+  "main": "dist/txcel.common.js",
+  "module": "src/index.js",
+  "description": "flexible vue table component with totally configuration, based on element-ui(el-table).",
+  "author": "moruofrog@gmail.com",
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "table",
+    "configurable",
+    "element-ui"
+  ],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --mode production",
+    "lint": "vue-cli-service lint",
+    "publish": "yarn lint && yarn publish"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.4",
+    "@vue/cli-plugin-eslint": "^3.0.4",
+    "@vue/cli-service": "^3.0.4",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-component": "^1.1.1",
+    "element-ui": "^2.13.2",
+    "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0-0",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "peerDependencies": {
+    "element-ui": ">=2.11.1",
+    "vue": ">=2.5.17"
+  }
+}
