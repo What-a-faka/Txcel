@@ -23,11 +23,13 @@
           :prop="col.prop"
           :sortable="col.sortable"
           :formatter="col.formatter"
-          :resizable="false"
+          :resizable="col.resizable || false"
           :width="col.width"
           :header-align="col.headerAlign || 'center'"
           :align="col.align || 'center'"
           :min-width="col.minWidth"
+          :show-overflow-tooltip="col.showOverflowTooltip || false"
+          :fixed="col.fixed"
         >
           <template slot-scope="scope">
             <component
@@ -47,11 +49,13 @@
           :prop="col.prop"
           :sortable="col.sortable"
           :formatter="col.formatter"
-          :resizable="false"
+          :resizable="col.resizable"
           :width="col.width"
           :min-width="col.minWidth"
           :header-align="col.headerAlign || 'center'"
           :align="col.align || 'center'"
+          :show-overflow-tooltip="col.showOverflowTooltip || false"
+          :fixed="col.fixed"
         ></el-table-column>
       </template>
     </el-table>
