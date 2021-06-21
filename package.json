@@ -1,6 +1,6 @@
 {
   "name": "@what-a-faka/txcel",
-  "version": "1.2.12",
+  "version": "1.2.15",
   "main": "dist/txcel.common.js",
   "module": "src/index.js",
   "description": "flexible vue table component with totally configuration, based on element-ui(el-table).",
@@ -20,7 +20,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --mode production",
     "lint": "vue-cli-service lint",
-    "publish": "yarn install && yarn lint"
+    "release": "yarn install && yarn lint && yarn publish"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.4",
