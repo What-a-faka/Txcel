@@ -8,6 +8,10 @@
       @sort-change="handleSortChange"
       @selection-change="handleRowSelect"
     >
+      <div slot="empty">
+        <slot name="noContent"></slot>
+      </div>
+
       <el-table-column
         v-if="rowSelection"
         v-bind="rowSelection.options"
